@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import ProcessComponent from "./Components/processComponent";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    processData: [],
+    students: [
+      { id: 1, name: "Arber", age: 21 },
+      { id: 2, name: "Elidor", age: 19 },
+      { id: 3, name: "Ulger", age: 16 },
+    ],
+  };
+  renderTableData() {
+    return this.state.students.map((student, index) => {
+      const { id, name, age, } = student; //destructuring
+      return <ProcessComponent id={id} name={name} time={age} />;
+    });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Operating Systems Project</h1>
+        <h2>Project Manager Shefqet Meda</h2>
+        <h2>
+          Project members:Arber Gjonaj, Elidor Varros, Eljo Decolli, Kristian
+          Shatraj, Siner Sakollar, Ulger Boja
+        </h2>
+        <table id="students">
+          <tbody>
+          
+            {this.renderTableData()}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
 }
 
 export default App;
